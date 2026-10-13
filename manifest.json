@@ -43,6 +43,16 @@
       "name": "Playful Kids Classical",
       "url": "https://classicalkids.stream.publicradio.org/classicalkids.aac",
       "format": "aac"
+    },
+    {
+      "name": "hubba plist 711 - Classic Rock & 80s",
+      "url": "https://listen.181fm.com/181-eagle_128k.mp3",
+      "format": "mp3"
+    },
+    {
+      "name": "hubba plist 711 - 90s & 2000s Pop",
+      "url": "https://listen.181fm.com/181-star90s_128k.mp3",
+      "format": "mp3"
     }
   ]
 }
