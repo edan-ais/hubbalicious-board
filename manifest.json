@@ -1,4 +1,12 @@
-{ "images": [
-  "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/slide1.jpg",
-  "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/slide2.jpg"
-] }
+{
+  "images": [
+    "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/slide1.jpg",
+    "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/slide2.jpg"
+  ],
+  "playlists": [
+    { "name": "Upbeat Pop", "url": "https://listen.181fm.com/181-power_128k.mp3", "format": "mp3" },
+    { "name": "Classic Oldies", "url": "https://listen.181fm.com/181-goodtime_128k.mp3", "format": "mp3" },
+    { "name": "Chill Easy Listening", "url": "https://listen.181fm.com/181-breeze_128k.mp3", "format": "mp3" },
+    { "name": "Throwback 80s", "url": "https://listen.181fm.com/181-awesome80s_128k.mp3", "format": "mp3" }
+  ]
+}
