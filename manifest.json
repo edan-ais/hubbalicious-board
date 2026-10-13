@@ -1,6 +1,6 @@
 {
   "images": [
-    "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/menu-tv1-v1.jpg"
+    "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/menu-tv1-v2.jpg"
   ],
   "images_landscape": [
     "https://raw.githubusercontent.com/edan-ais/hubbalicious-board/main/tv2-slide1.jpg",
@@ -25,6 +25,11 @@
     {
       "name": "Throwback 80s",
       "url": "https://listen.181fm.com/181-awesome80s_128k.mp3",
+      "format": "mp3"
+    },
+    {
+      "name": "Country Roads",
+      "url": "https://listen.181fm.com/181-kickincountry_128k.mp3",
       "format": "mp3"
     },
     {
