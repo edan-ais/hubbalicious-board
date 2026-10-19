@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ManifestTask" extends="Task">
+  <interface>
+    <field id="images" type="array" />
+    <field id="imagesLandscape" type="array" />
+    <field id="playlists" type="array" />
+    <field id="slideSeconds" type="integer" value="15" />
+    <field id="fetchOk" type="boolean" value="false" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/ManifestTask.brs" />
+</component>

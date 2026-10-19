@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="BoardScene" extends="Scene">
+  <interface>
+    <field id="boardMode" type="string" value="" onChange="applyMode" />
+    <field id="rotationDir" type="string" value="cw" onChange="applyMode" />
+    <field id="saveMode" type="string" value="" />
+    <field id="saveRotation" type="string" value="cw" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/BoardScene.brs" />
+  <children>
+    <Poster id="slide" width="1920" height="1080" loadDisplayMode="scaleToFit" loadWidth="1920" loadHeight="1080" />
+
+    <Label id="statusLabel" translation="[40, 1020]" width="1840" height="40"
+           font="font:SmallSystemFont" color="0xFFFFFFFF" text="" visible="false" />
+
+    <Group id="setupPanel" visible="false">
+      <Rectangle color="0x000000E6" width="1920" height="1080" />
+      <Label text="Hubbalicious Board setup" translation="[160, 140]" width="1600"
+             font="font:LargeSystemFont" color="0xFFFFFFFF" />
+      <Label text="Up/Down to choose, OK to select" translation="[160, 220]" width="1600"
+             font="font:SmallSystemFont" color="0xAAAAAAFF" />
+      <LayoutGroup id="setupItems" layoutDirection="vert" itemSpacings="[24]" translation="[200, 320]" />
+    </Group>
+
+    <Group id="musicPanel" visible="false">
+      <Rectangle color="0x000000E6" width="1920" height="1080" />
+      <Label text="Music" translation="[160, 100]" width="1600"
+             font="font:LargeSystemFont" color="0xFFFFFFFF" />
+      <Label id="nowPlaying" text="" translation="[160, 180]" width="1600"
+             font="font:SmallSystemFont" color="0x7FD4FFFF" />
+      <LayoutGroup id="musicItems" layoutDirection="vert" itemSpacings="[14]" translation="[200, 260]" />
+    </Group>
+
+    <Audio id="audio" />
+
+    <Timer id="slideTimer" duration="15" repeat="true" />
+    <Timer id="statusTimer" duration="5" repeat="false" />
+  </children>
+</component>
