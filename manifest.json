@@ -17,6 +17,11 @@
   ],
   "playlists": [
     {
+      "name": "Halloween",
+      "url": "https://stream.halloweenradio.net/listen/halloween_radio_main/aac",
+      "format": "aac"
+    },
+    {
       "name": "Upbeat Pop",
       "url": "https://listen.181fm.com/181-power_128k.mp3",
       "format": "mp3"
