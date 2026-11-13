@@ -32,6 +32,11 @@ sub init()
     m.slideTimer.observeField("fire", "nextSlide")
     m.statusTimer.observeField("fire", "clearStatus")
     m.audio.observeField("state", "onAudioState")
+    m.slide.observeField("loadStatus", "onSlideLoadStatus")
+    m.slideFetch = invalid
+    m.slideSeq = 0
+    m.pendingUri = ""
+    m.failCount = 0
 
     m.manifestTask = CreateObject("roSGNode", "ManifestTask")
     m.manifestTask.observeField("images", "onImages")
@@ -110,9 +115,50 @@ sub showSlide()
     end if
     if m.index >= list.count() then m.index = 0
     uri = list[m.index]
-    if type(uri) = "String" and uri <> "" then
-        m.slide.uri = uri
-        clearStatus()
+    if type(uri) <> "String" or uri = "" then return
+    ' Fetch through a task into a fresh tmp: path per slide. A unique
+    ' path per fetch means the Poster can never show a stale texture
+    ' cached under a reused path, and old files are deleted so tmp:
+    ' stays bounded.
+    m.pendingUri = uri
+    if m.slideFetch <> invalid then m.slideFetch.control = "STOP"
+    task = CreateObject("roSGNode", "SlideTask")
+    task.observeField("localUri", "onSlideReady")
+    task.observeField("failed", "onSlideFailed")
+    task.seq = m.slideSeq
+    task.url = uri
+    m.slideFetch = task
+    task.control = "RUN"
+end sub
+
+sub onSlideReady(evt as object)
+    task = evt.getRoSGNode()
+    if task <> m.slideFetch then return
+    if task.url <> m.pendingUri then return
+    m.failCount = 0
+    m.slide.uri = task.localUri
+    clearStatus()
+    m.slideSeq = m.slideSeq + 1
+end sub
+
+sub onSlideFailed(evt as object)
+    task = evt.getRoSGNode()
+    if task <> m.slideFetch then return
+    ' A slide that will not download is skipped, not shown forever.
+    m.failCount = m.failCount + 1
+    if m.failCount > currentList().count() then
+        showStatus("Slides are not loading - check the TV's WiFi. Retrying...")
+        return
+    end if
+    m.index = (m.index + 1) mod currentList().count()
+    showSlide()
+end sub
+
+sub onSlideLoadStatus(evt as object)
+    ' A downloaded-but-unreadable image is skipped the same way.
+    if evt.getData() = "failed" then
+        m.failCount = m.failCount + 1
+        if m.failCount <= currentList().count() and currentList().count() > 0 then nextSlide()
     end if
 end sub
 
@@ -354,3 +400,4 @@ function onKeyEvent(key as string, press as boolean) as boolean
     end if
     return false
 end function
+
