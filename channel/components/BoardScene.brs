@@ -58,6 +58,10 @@ sub applyMode()
         m.slide.height = 1080
         m.slide.translation = [0, 0]
         m.slide.rotation = 0
+        ' Cap the decoded texture at 720p: ads are published at 1280x720,
+        ' so a full-screen slide costs ~3.7 MB of texture instead of ~8.3.
+        m.slide.loadWidth = 1280
+        m.slide.loadHeight = 720
         m.slide.loadDisplayMode = "scaleToFit"
     else if m.top.boardMode = "tv1" then
         ' Menu images are portrait 1080x1920 and TV 1 is wall-mounted
@@ -400,4 +404,3 @@ function onKeyEvent(key as string, press as boolean) as boolean
     end if
     return false
 end function
-
